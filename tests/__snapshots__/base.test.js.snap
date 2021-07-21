@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Convert to figma button with padding 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "backgrounds": Array [],
+        "children": Array [
+          Object {
+            "constraints": Object {
+              "horizontal": "SCALE",
+              "vertical": "MIN",
+            },
+            "fills": Array [
+              Object {
+                "color": Object {
+                  "b": 0.9372549019607843,
+                  "g": 0.9372549019607843,
+                  "r": 0.9372549019607843,
+                },
+                "opacity": 1,
+                "type": "SOLID",
+              },
+            ],
+            "height": 39,
+            "strokeWeight": 2,
+            "strokes": Array [
+              Object {
+                "color": Object {
+                  "b": 0.4627450980392157,
+                  "g": 0.4627450980392157,
+                  "r": 0.4627450980392157,
+                },
+                "opacity": 1,
+                "type": "SOLID",
+              },
+            ],
+            "type": "RECTANGLE",
+            "width": 58,
+            "x": 0,
+            "y": 0,
+          },
+          Object {
+            "characters": "TEST",
+            "constraints": Object {
+              "horizontal": "CENTER",
+              "vertical": "MIN",
+            },
+            "data": Object {
+              "heightType": "fixed",
+              "widthType": "shrink",
+            },
+            "fills": Array [
+              Object {
+                "color": Object {
+                  "b": 0,
+                  "g": 0,
+                  "r": 0,
+                },
+                "opacity": 1,
+                "type": "SOLID",
+              },
+            ],
+            "fontFamily": "Arial",
+            "fontSize": 13,
+            "height": 15,
+            "textAlignHorizontal": "CENTER",
+            "type": "TEXT",
+            "width": 34,
+            "x": 12,
+            "y": 12,
+          },
+        ],
+        "clipsContent": false,
+        "constraints": Object {
+          "horizontal": "SCALE",
+          "vertical": "MIN",
+        },
+        "data": Object {
+          "heightType": "fixed",
+          "widthType": "shrink",
+        },
+        "height": 39,
+        "type": "FRAME",
+        "width": 58,
+        "x": 8,
+        "y": 8,
+      },
+    ],
+    "constraints": Object {
+      "horizontal": "SCALE",
+      "vertical": "MIN",
+    },
+    "data": Object {
+      "heightType": "fixed",
+      "widthType": "fixed",
+    },
+    "height": 600,
+    "type": "FRAME",
+    "width": 800,
+    "x": 0,
+    "y": 0,
+  },
+]
+`;

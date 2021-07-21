@@ -1,6 +1,6 @@
-import { getImageFills } from '../utils';
+import { getImageFills, traverse } from '../utils';
 import { LayerNode, SvgNode } from '../types';
-import fileType from "file-type";
+import fileType from 'file-type';
 
 export function getAggregateRectOfElements(elements: Element[]) {
     if (!elements.length) {
@@ -196,10 +196,6 @@ export const prepareUrl = (url: string) => {
         return url;
     }
     const urlParsed = new URL(url);
-    urlParsed.protocol = 'https';
-    urlParsed.hostname = 'bem.github.io';
-    urlParsed.pathname = 'yandex-ui-themer' + urlParsed.pathname;
-    urlParsed.port = '';
 
     return urlParsed.toString();
 };
@@ -246,7 +242,9 @@ const convertToSvg = (value: string, layer: LayerNode) => {
     layerSvg.svg = value;
 
     if (typeof layerSvg.fills !== 'symbol') {
-        layerSvg.fills = layerSvg?.fills?.filter((item) => item.type !== 'IMAGE');
+        layerSvg.fills = layerSvg?.fills?.filter(
+            (item) => item.type !== 'IMAGE'
+        );
     }
 };
 
@@ -255,7 +253,6 @@ const convertToSvg = (value: string, layer: LayerNode) => {
 export async function processImages(layer: LayerNode) {
     const images = getImageFills(layer as RectangleNode);
 
-    
     return images
         ? Promise.all(
               images.map(async (image: any) => {
@@ -322,3 +319,14 @@ export async function processImages(layer: LayerNode) {
           )
         : Promise.resolve([]);
 }
+
+export const getShadowEls = (el: Element): Element[] =>
+    Array.from(
+        el.shadowRoot?.querySelectorAll('*') || ([] as Element[])
+    ).reduce((memo, el) => {
+        memo.push(el);
+        memo.push(...getShadowEls(el));
+        return memo;
+    }, [] as Element[]);
+
+

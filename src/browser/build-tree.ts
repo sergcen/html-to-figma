@@ -43,13 +43,6 @@ function getDepth(node: Element | Node) {
     return getParents(node).length;
 }
 
-function setData(node: any, key: string, value: string) {
-    if (!(node as any).data) {
-        (node as any).data = {};
-    }
-    (node as any).data[key] = value;
-}
-
 export function removeRefs(layers: LayerNode[], root: WithRef<FrameNode>) {
     layers.concat([root]).forEach((layer) => {
         traverse(layer, (child) => {
@@ -58,153 +51,9 @@ export function removeRefs(layers: LayerNode[], root: WithRef<FrameNode>) {
     });
 }
 
-export function addConstraints(layers: LayerNode[]) {
-    layers.forEach((layer) => {
-        traverse(layer, (child) => {
-            if (child.type === 'SVG') {
-                child.constraints = {
-                    horizontal: 'CENTER',
-                    vertical: 'MIN',
-                };
-            } else {
-                const ref = child.ref;
-                if (ref) {
-                    const el =
-                        // @ts-expect-error
-                        ref instanceof HTMLElement ? ref : ref.parentElement;
-                    const parent = el && el.parentElement;
-                    if (el && parent) {
-                        const currentDisplay = el.style.display;
-                        el.style.setProperty('display', 'none', '!important');
-                        let computed = getComputedStyle(el);
-                        const hasFixedWidth =
-                            computed.width &&
-                            computed.width.trim().endsWith('px');
-                        const hasFixedHeight =
-                            computed.height &&
-                            computed.height.trim().endsWith('px');
-                        el.style.display = currentDisplay;
-                        const parentStyle = getComputedStyle(parent);
-                        let hasAutoMarginLeft = computed.marginLeft === 'auto';
-                        let hasAutoMarginRight =
-                            computed.marginRight === 'auto';
-                        let hasAutoMarginTop = computed.marginTop === 'auto';
-                        let hasAutoMarginBottom =
-                            computed.marginBottom === 'auto';
-
-                        computed = getComputedStyle(el);
-
-                        if (
-                            ['absolute', 'fixed'].includes(computed.position!)
-                        ) {
-                            setData(child, 'position', computed.position!);
-                        }
-
-                        if (hasFixedHeight) {
-                            setData(child, 'heightType', 'fixed');
-                        }
-                        if (hasFixedWidth) {
-                            setData(child, 'widthType', 'fixed');
-                        }
-
-                        const isInline =
-                            computed.display &&
-                            computed.display.includes('inline');
-
-                        if (isInline) {
-                            const parentTextAlign = parentStyle.textAlign;
-                            if (parentTextAlign === 'center') {
-                                hasAutoMarginLeft = true;
-                                hasAutoMarginRight = true;
-                            } else if (parentTextAlign === 'right') {
-                                hasAutoMarginLeft = true;
-                            }
-
-                            if (computed.verticalAlign === 'middle') {
-                                hasAutoMarginTop = true;
-                                hasAutoMarginBottom = true;
-                            } else if (computed.verticalAlign === 'bottom') {
-                                hasAutoMarginTop = true;
-                                hasAutoMarginBottom = false;
-                            }
-
-                            setData(child, 'widthType', 'shrink');
-                        }
-                        const parentJustifyContent =
-                            parentStyle.display === 'flex' &&
-                            ((parentStyle.flexDirection === 'row' &&
-                                parentStyle.justifyContent) ||
-                                (parentStyle.flexDirection === 'column' &&
-                                    parentStyle.alignItems));
-
-                        if (parentJustifyContent === 'center') {
-                            hasAutoMarginLeft = true;
-                            hasAutoMarginRight = true;
-                        } else if (
-                            parentJustifyContent &&
-                            (parentJustifyContent.includes('end') ||
-                                parentJustifyContent.includes('right'))
-                        ) {
-                            hasAutoMarginLeft = true;
-                            hasAutoMarginRight = false;
-                        }
-
-                        const parentAlignItems =
-                            parentStyle.display === 'flex' &&
-                            ((parentStyle.flexDirection === 'column' &&
-                                parentStyle.justifyContent) ||
-                                (parentStyle.flexDirection === 'row' &&
-                                    parentStyle.alignItems));
-                        if (parentAlignItems === 'center') {
-                            hasAutoMarginTop = true;
-                            hasAutoMarginBottom = true;
-                        } else if (
-                            parentAlignItems &&
-                            (parentAlignItems.includes('end') ||
-                                parentAlignItems.includes('bottom'))
-                        ) {
-                            hasAutoMarginTop = true;
-                            hasAutoMarginBottom = false;
-                        }
-
-                        if (child.type === 'TEXT') {
-                            if (computed.textAlign === 'center') {
-                                hasAutoMarginLeft = true;
-                                hasAutoMarginRight = true;
-                            } else if (computed.textAlign === 'right') {
-                                hasAutoMarginLeft = true;
-                                hasAutoMarginRight = false;
-                            }
-                        }
-
-                        child.constraints = {
-                            horizontal:
-                                hasAutoMarginLeft && hasAutoMarginRight
-                                    ? 'CENTER'
-                                    : hasAutoMarginLeft
-                                    ? 'MAX'
-                                    : 'SCALE',
-                            vertical:
-                                hasAutoMarginBottom && hasAutoMarginTop
-                                    ? 'CENTER'
-                                    : hasAutoMarginTop
-                                    ? 'MAX'
-                                    : 'MIN',
-                        };
-                    }
-                } else {
-                    child.constraints = {
-                        horizontal: 'SCALE',
-                        vertical: 'MIN',
-                    };
-                }
-            }
-        });
-    });
-}
-
 export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
     const refMap = new WeakMap<Element | Node | SceneNode, LayerNode>();
+    // маппинг слоя к дом элементам
     layers.forEach((layer) => {
         if (layer.ref) {
             refMap.set(layer.ref, layer);
@@ -224,94 +73,81 @@ export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
             // const node = layer.ref!;
             const node = layer.ref;
             let parentElement: Element | null =
-                (node && (node as Element).parentElement) || null;
+                (node as Element)?.parentElement || null;
+
             do {
                 if (parentElement === document.body) {
                     break;
                 }
-                if (parentElement && parentElement !== document.body) {
-                    // Get least common demoninator shared parent and make a group
-                    const parentLayer = refMap.get(parentElement);
-                    if (parentLayer === originalParent) {
-                        break;
+                if (!parentElement) continue;
+                // Get least common demoninator shared parent and make a group
+                const parentLayer = refMap.get(parentElement);
+                if (parentLayer === originalParent) {
+                    break;
+                }
+                if (!parentLayer || parentLayer === root) continue;
+                
+                if (hasChildren(parentLayer)) {
+                    if (originalParent) {
+                        const index = (originalParent as any).children.indexOf(
+                            layer
+                        );
+                        (originalParent as any).children.splice(index, 1);
+                        (parentLayer.children as Array<any>).push(layer);
+                        updated = true;
+                        return;
                     }
-                    if (parentLayer && parentLayer !== root) {
-                        if (hasChildren(parentLayer)) {
-                            if (originalParent) {
-                                const index = (
-                                    originalParent as any
-                                ).children.indexOf(layer);
-                                (originalParent as any).children.splice(
-                                    index,
-                                    1
-                                );
-                                (parentLayer.children as Array<any>).push(
-                                    layer
-                                );
-                                updated = true;
-                                return;
-                            }
-                        } else {
-                            let parentRef = parentLayer.ref;
-                            if (
-                                parentRef &&
-                                parentRef instanceof Node &&
-                                parentRef.nodeType === Node.TEXT_NODE
-                            ) {
-                                parentRef = parentRef.parentElement as Element;
-                            }
-                            const overflowHidden =
-                                parentRef instanceof Element &&
-                                getComputedStyle(parentRef).overflow !==
-                                    'visible';
-                            const newParent: LayerNode = {
-                                type: 'FRAME',
-                                clipsContent: !!overflowHidden,
-                                // type: 'GROUP',
-                                x: parentLayer.x,
-                                y: parentLayer.y,
-                                width: parentLayer.width,
-                                height: parentLayer.height,
-                                ref: parentLayer.ref,
-                                backgrounds: [] as any,
-                                // @ts-expect-error
-                                children: [parentLayer, layer] as LayerNode[],
-                            };
+                } else {
+                    let parentRef = parentLayer.ref;
+                    if (
+                        parentRef &&
+                        parentRef instanceof Node &&
+                        parentRef.nodeType === Node.TEXT_NODE
+                    ) {
+                        parentRef = parentRef.parentElement as Element;
+                    }
+                    const overflowHidden =
+                        parentRef instanceof Element &&
+                        getComputedStyle(parentRef).overflow !== 'visible';
+                    const newParent: LayerNode = {
+                        type: 'FRAME',
+                        clipsContent: !!overflowHidden,
+                        // type: 'GROUP',
+                        x: parentLayer.x,
+                        y: parentLayer.y,
+                        width: parentLayer.width,
+                        height: parentLayer.height,
+                        ref: parentLayer.ref,
+                        backgrounds: [] as any,
+                        // @ts-expect-error
+                        children: [parentLayer, layer] as LayerNode[],
+                    };
 
-                            const parent = getParent(parentLayer, root);
-                            if (!parent) {
-                                console.warn(
-                                    '\n\nCANT FIND PARENT\n',
-                                    JSON.stringify({
-                                        ...parentLayer,
-                                        ref: null,
-                                    })
-                                );
-                                continue;
-                            }
-                            if (originalParent) {
-                                const index = (
-                                    originalParent as any
-                                ).children.indexOf(layer);
-                                (originalParent as any).children.splice(
-                                    index,
-                                    1
-                                );
-                            }
-                            delete parentLayer.ref;
-                            const newIndex = (parent as any).children.indexOf(
-                                parentLayer
-                            );
-                            refMap.set(parentElement, newParent);
-                            (parent as any).children.splice(
-                                newIndex,
-                                1,
-                                newParent
-                            );
-                            updated = true;
-                            return;
-                        }
+                    const parent = getParent(parentLayer, root);
+                    if (!parent) {
+                        console.warn(
+                            '\n\nCANT FIND PARENT\n',
+                            JSON.stringify({
+                                ...parentLayer,
+                                ref: null,
+                            })
+                        );
+                        continue;
                     }
+                    if (originalParent) {
+                        const index = (originalParent as any).children.indexOf(
+                            layer
+                        );
+                        (originalParent as any).children.splice(index, 1);
+                    }
+                    delete parentLayer.ref;
+                    const newIndex = (parent as any).children.indexOf(
+                        parentLayer
+                    );
+                    refMap.set(parentElement, newParent);
+                    (parent as any).children.splice(newIndex, 1, newParent);
+                    updated = true;
+                    return;
                 }
             } while (
                 parentElement &&
@@ -362,7 +198,8 @@ export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
                             for (const parent of otherParents) {
                                 if (
                                     childParents.includes(parent) &&
-                                    (layer.ref! as HTMLElement).contains(parent)
+                                    // @ts-expect-error
+                                    layer.ref!.contains(parent)
                                 ) {
                                     const depth = getDepth(parent);
                                     if (depth > lowestCommonDenominatorDepth) {
