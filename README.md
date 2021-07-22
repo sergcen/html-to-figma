@@ -25,5 +25,5 @@ import { addLayersToFrame } from "html-to-figma/figma";
 
 const rootNode = figma.currentPage;
 
-await addLayersToFrame(element);
+await addLayersToFrame(layersMeta, rootNode);
 ```
