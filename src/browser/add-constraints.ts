@@ -1,5 +1,6 @@
 import { LayerNode } from '../types';
 import { traverse } from '../utils';
+import { context } from './utils';
 
 function setData(node: any, key: string, value: string) {
     if (!(node as any).data) {
@@ -9,6 +10,9 @@ function setData(node: any, key: string, value: string) {
 }
 
 export const addConstraintToLayer = (layer: LayerNode) => {
+    // @ts-expect-error
+    const { getComputedStyle, HTMLElement } = context.window;
+    
     if (layer.type === 'SVG') {
         layer.constraints = {
             horizontal: 'CENTER',

@@ -1,6 +1,7 @@
 import { getBoundingClientRect } from './dom-utils';
 import { hasChildren, traverse } from '../utils';
 import { LayerNode, WithRef } from '../types';
+import { context } from './utils';
 
 function getParent(layer: LayerNode, root: WithRef<FrameNode>) {
     let response: LayerNode | null = null;
@@ -52,6 +53,9 @@ export function removeRefs(layers: LayerNode[], root: WithRef<FrameNode>) {
 }
 
 export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
+    // @ts-expect-error
+    const { getComputedStyle, Element } = context.window;
+    
     const refMap = new WeakMap<Element | Node | SceneNode, LayerNode>();
     // маппинг слоя к дом элементам
     layers.forEach((layer) => {
@@ -76,7 +80,7 @@ export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
                 (node as Element)?.parentElement || null;
 
             do {
-                if (parentElement === document.body) {
+                if (parentElement === context.document.body) {
                     break;
                 }
                 if (!parentElement) continue;
@@ -98,7 +102,7 @@ export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
                         return;
                     }
                 } else {
-                    let parentRef = parentLayer.ref;
+                    let parentRef = parentLayer.ref as Element;
                     if (
                         parentRef &&
                         parentRef instanceof Node &&
@@ -229,7 +233,7 @@ export function makeTree(layers: LayerNode[], root: WithRef<FrameNode>) {
 
                             const overflowHidden =
                                 lowestCommonDenominator instanceof Element &&
-                                getComputedStyle(lowestCommonDenominator)
+                                getComputedStyle(lowestCommonDenominator as Element)
                                     .overflow !== 'visible';
 
                             const newParent: LayerNode = {

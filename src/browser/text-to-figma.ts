@@ -1,8 +1,11 @@
 import { WithRef } from '../types';
 import { fastClone, parseUnits, getRgb } from '../utils';
 import { textNodesUnder, isHidden } from './dom-utils';
+import { context } from './utils';
 
 export const textToFigma = (el: Element) => {
+    const { getComputedStyle } = context.window;
+
     const layers = [];
     const textNodes = textNodesUnder(el);
 
@@ -15,7 +18,7 @@ export const textToFigma = (el: Element) => {
             continue;
         }
         const computedStyles = getComputedStyle(parent);
-        const range = document.createRange();
+        const range = context.document.createRange();
         range.selectNode(node);
         const rect = fastClone(range.getBoundingClientRect());
         const lineHeight = parseUnits(computedStyles.lineHeight);

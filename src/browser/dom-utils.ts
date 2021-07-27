@@ -1,6 +1,7 @@
-import { getImageFills, traverse } from '../utils';
+import { getImageFills } from '../utils';
 import { LayerNode, SvgNode } from '../types';
 import fileType from 'file-type';
+import { context } from './utils';
 
 export function getAggregateRectOfElements(elements: Element[]) {
     if (!elements.length) {
@@ -31,6 +32,8 @@ export function getAggregateRectOfElements(elements: Element[]) {
     };
 }
 export function getBoundingClientRect(el: Element): ClientRect {
+    const { getComputedStyle } = context.window;
+
     const computed = getComputedStyle(el);
     const display = computed.display;
     if (display && display.includes('inline') && el.children.length) {
@@ -88,6 +91,9 @@ export function getAppliedComputedStyles(
     element: Element,
     pseudo?: string
 ): { [key: string]: string } {
+    // @ts-ignore
+    const { getComputedStyle, HTMLElement, SVGElement } = context.window;
+
     if (!(element instanceof HTMLElement || element instanceof SVGElement)) {
         return {};
     }
@@ -162,7 +168,7 @@ export function getAppliedComputedStyles(
 export function textNodesUnder(el: Element) {
     let n: Node | null = null;
     const a: Node[] = [];
-    const walk = document.createTreeWalker(
+    const walk = context.document.createTreeWalker(
         el,
         NodeFilter.SHOW_TEXT,
         null,
@@ -201,6 +207,8 @@ export const prepareUrl = (url: string) => {
 };
 
 export function isHidden(element: Element, pseudo?: string) {
+    const { getComputedStyle } = context.window;
+
     let el: Element | null = element;
     do {
         const computed = getComputedStyle(el, pseudo);

@@ -4,12 +4,15 @@ import { elementToFigma } from './element-to-figma';
 import { LayerNode, WithRef } from '../types';
 import { textToFigma } from './text-to-figma';
 import { addConstraints } from './add-constraints';
+import { context } from './utils';
 
 export function htmlToFigma(
     selector: HTMLElement | string = 'body',
     useFrames = true,
     time = false
 ) {
+    // @ts-expect-error
+    const { HTMLElement } = context.window;
     if (time) {
         console.time('Parse dom');
     }
@@ -17,8 +20,8 @@ export function htmlToFigma(
     let layers: LayerNode[] = [];
     const el =
         selector instanceof HTMLElement
-            ? selector
-            : document.querySelector(selector || 'body');
+            ? selector as HTMLElement
+            : context.document.querySelector(selector as string || 'body');
 
     if (!el) {
         throw Error(`Element not found`);
@@ -31,7 +34,7 @@ export function htmlToFigma(
         try {
             const symbolSelector = use.href.baseVal;
             const symbol: SVGSymbolElement | null =
-                document.querySelector(symbolSelector);
+                context.document.querySelector(symbolSelector);
             if (symbol) {
                 use.outerHTML = symbol.innerHTML;
             }
@@ -55,6 +58,7 @@ export function htmlToFigma(
             .map((el) => elementToFigma(el))
             .flat()
             .filter(Boolean) as LayerNode[];
+        console.log(layers);
     }
 
     layers.push(...textToFigma(el));
@@ -63,10 +67,10 @@ export function htmlToFigma(
     const root = {
         type: 'FRAME',
         width: Math.round(window.innerWidth),
-        height: Math.round(document.documentElement.scrollHeight),
+        height: Math.round(context.document.documentElement.scrollHeight),
         x: 0,
         y: 0,
-        ref: document.body,
+        ref: context.document.body,
     } as WithRef<FrameNode>;
 
     layers.unshift(root);

@@ -1,7 +1,7 @@
 {
-  "name": "html-figma",
+  "name": "html-figma-dev-plugin",
   "version": "0.0.1",
-  "description": "Covert DOM node to Figma Node",
+  "description": "",
   "main": "src/index.ts",
   "scripts": {
     "start": "parcel tests/page/index.html",
@@ -14,7 +14,9 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.19.3",
     "@types/jest": "^26.0.23",
+    "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^15.6.0",
+    "css-loader": "^6.2.0",
     "cssnano": "^5.0.6",
     "html-webpack-inline-source-plugin": "^0.0.10",
     "html-webpack-plugin": "^5.3.2",
@@ -23,6 +25,7 @@
     "postcss": "^8.3.2",
     "puppeteer": "^9.1.1",
     "react-docgen-typescript": "^1.22.0",
+    "style-loader": "^3.2.1",
     "ts-jest": "^26.5.6",
     "ts-loader": "^9.2.4",
     "typescript": "^4.2.4",
@@ -34,12 +37,10 @@
     "singleQuote": true
   },
   "dependencies": {
+    "@types/react": "^17.0.15",
     "file-type": "^12.2.0",
     "jest-dev-server": "^5.0.3",
-    "jest-puppeteer": "^5.0.4"
-  },
-  "jest": {
-    "globalSetup": "./tests/setup.js",
-    "preset": "jest-puppeteer"
+    "jest-puppeteer": "^5.0.4",
+    "lodash.throttle": "^4.1.1"
   }
 }

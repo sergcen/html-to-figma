@@ -7,8 +7,21 @@ import {
 } from './dom-utils';
 import { size, getRgb, parseUnits, toNum, parseValue } from '../utils';
 import { LayerNode, WithRef } from '../types';
+import { context } from './utils';
 
 export const elementToFigma = (el: Element, pseudo?: string) => {
+
+    const {
+        getComputedStyle,
+        // @ts-expect-error
+        SVGSVGElement,
+        // @ts-expect-error
+        HTMLPictureElement,
+        // @ts-expect-error
+        HTMLImageElement,
+        // @ts-expect-error
+        HTMLVideoElement,
+    } = context.window;
     const layers: LayerNode[] = [];
 
     if (isHidden(el)) {
@@ -41,7 +54,7 @@ export const elementToFigma = (el: Element, pseudo?: string) => {
 
     const appliedStyles = getAppliedComputedStyles(el, pseudo);
     const computedStyle = getComputedStyle(el, pseudo);
-
+    console.log(appliedStyles);
     if (
         (size(appliedStyles) ||
             el instanceof HTMLImageElement ||
@@ -50,7 +63,7 @@ export const elementToFigma = (el: Element, pseudo?: string) => {
         computedStyle.display !== 'none'
     ) {
         const rect = getBoundingClientRect(el);
-
+        console.log(rect);
         if (rect.width >= 1 && rect.height >= 1) {
             const fills: Paint[] = [];
 
@@ -210,7 +223,7 @@ export const elementToFigma = (el: Element, pseudo?: string) => {
                 }
             }
             if (el instanceof HTMLImageElement) {
-                const url = el.src;
+                const url = (el as HTMLImageElement).src;
                 if (url) {
                     fills.push({
                         url,
@@ -244,7 +257,7 @@ export const elementToFigma = (el: Element, pseudo?: string) => {
                 }
             }
             if (el instanceof HTMLVideoElement) {
-                const url = el.poster;
+                const url = (el as HTMLVideoElement).poster;
                 if (url) {
                     fills.push({
                         url,
@@ -310,7 +323,7 @@ export const elementToFigma = (el: Element, pseudo?: string) => {
 
     if (!pseudo && getComputedStyle(el, 'before').content !== 'none') {
         const pseudo = elementToFigma(el, 'before');
-        
+
         pseudo?.length && layers.push(...pseudo);
     }
 

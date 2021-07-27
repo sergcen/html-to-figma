@@ -1,0 +1,7 @@
+{
+    "name": "html-ro-figma-dev",
+    "id": "962455453431179906",
+    "api": "1.0.0",
+    "main": "dist/figma.js",
+    "ui": "dist/index.html"
+  }
