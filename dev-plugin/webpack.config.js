@@ -1,5 +1,5 @@
-const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = (env, argv) => {
@@ -7,9 +7,13 @@ module.exports = (env, argv) => {
         __dirname,
         argv.mode === 'production' ? '../dev-plugin-static' : 'dist'
     );
+    const publicPath =
+        argv.mode === 'production'
+            ? 'https://sergcen.github.io/html-to-figma/dev-plugin-static/'
+            : '/';
     const frameUrl =
         argv.mode === 'production'
-            ? 'https://sergcen.github.io/html-to-figma/dev-plugin-static/frame.html'
+            ? path.join(publicPath, 'frame.html')
             : 'http://localhost:5000/frame.html';
 
     return {
@@ -46,9 +50,13 @@ module.exports = (env, argv) => {
         resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
 
         output: {
-            filename: '[name].js',
+            filename: (pathData) => {
+                return pathData.chunk.name === 'figma'
+                    ? 'figma/[name].js'
+                    : '[name].js';
+            },
             path: outputDir, // Compile into a folder called "dist"
-            publicPath: '/',
+            publicPath,
         },
         devServer: {
             contentBase: outputDir,
@@ -65,7 +73,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 template: './src/ui.html',
-                filename: 'index.html',
+                filename: 'figma/index.html',
                 inlineSource: '.(js)$',
                 chunks: ['ui'],
                 templateParameters: { frameUrl },
@@ -75,6 +83,14 @@ module.exports = (env, argv) => {
                 filename: 'frame.html',
                 inlineSource: '.(js)$',
                 chunks: ['frame', 'editor.worker', 'html.worker', 'css.worker'],
+            }),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: 'manifest.json',
+                        to: path.join(outputDir, 'figma', 'manifest.json'),
+                    },
+                ],
             }),
             // argv.mode === 'production' && new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin),
         ].filter(Boolean),
