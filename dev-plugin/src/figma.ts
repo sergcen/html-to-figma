@@ -11,7 +11,7 @@ figma.showUI(__html__, {
 const name = 'HTML-TO-FIGMA RESULT';
 
 interface MsgData {
-    layers: PlainLayerNode[];
+    layers: PlainLayerNode;
 }
 
 figma.ui.onmessage = async (msg) => {
@@ -32,13 +32,11 @@ figma.ui.onmessage = async (msg) => {
             x = currentNode.x;
             y = currentNode.y;
         }
-        console.log(layers);
-        for (const rootLayer of layers) {
-            rootLayer.x = x;
-            rootLayer.y = y;
-        }
-        let n = 0;
-        await addLayersToFrame(layers, baseFrame, ({ node, parent }) => {
+        
+        layers.x = x;
+        layers.y = y;
+
+        await addLayersToFrame([layers], baseFrame, ({ node, parent }) => {
             if (!parent) {
                 frameRoot = node;
                 node.name = name;
