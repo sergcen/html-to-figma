@@ -1,0 +1,33 @@
+<html>
+    <style>
+        .Button2 { 
+            padding: 10px;
+            border: 0;
+            position: relative;
+            background: none;
+        }
+        .Button2::before {
+            background-color: #fc0;
+            transition: background-color .15s linear;
+        }
+        
+        .Button2::after, .Button2::before {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: "";
+        }
+        .Button2:before {
+            border-radius: 4px;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <button class="Button2">TEST 1s</button>
+            <button class="Button2">TEST 2s</button>
+        </div>
+    </body>
+</html>

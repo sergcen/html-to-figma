@@ -1,0 +1,59 @@
+<html>
+    <style>
+        .Textinput {
+            position: relative;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .Textinput_view_default .Textinput-Box {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #eee;
+        }
+        .Textinput-Box {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 36px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .Textinput-Control {
+            position: relative;
+            z-index: 2;
+            height: 36px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: top;
+            border: 0 solid transparent;
+            outline: 0;
+            background: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <span class="Textinput Textinput_view_default Textinput_size_m">
+                <input aria-invalid="false" autocomplete="off" class="Textinput-Control" placeholder="Placeholder" type="text" value="">
+                    <span class="Textinput-Box">
+                </span>
+            </span>
+            <span class="Textinput Textinput_view_default Textinput_size_m">
+                <input value="Test Value" aria-invalid="false" autocomplete="off" class="Textinput-Control" placeholder="Placeholder" type="text" value="">
+                    <span class="Textinput-Box">
+                </span>
+            </span>
+        </div>
+    </body>
+</html>

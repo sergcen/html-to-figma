@@ -1,5 +1,5 @@
-import { LayerNode } from '../types';
-import { traverse } from '../utils';
+import { LayerNode, PlainLayerNode } from '../types';
+import { traverse, traverseAsync } from '../utils';
 import { processLayer } from './processLayer';
 
 interface LayerCbArgs {
@@ -9,12 +9,12 @@ interface LayerCbArgs {
 }
 
 export async function addLayersToFrame(
-    layers: LayerNode[],
+    layers: PlainLayerNode[],
     baseFrame: PageNode | FrameNode,
     onLayerProcess?: (args: LayerCbArgs) => void
 ) {
     for (const rootLayer of layers) {
-        await traverse(rootLayer, async (layer, parent) => {
+        await traverseAsync(rootLayer, async (layer, parent) => {
             try {
                 const node = await processLayer(layer, parent, baseFrame);
 

@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "parcel tests/page/index.html",
-    "build": "parcel build tests/page/index.html --no-minify",
+    "build": "parcel build tests/page/index.ts --no-minify && cp -R tests/page/stubs dist/",
     "serve:tests": "serve -s tests/page -p 3000",
     "test": "npm run build && jest tests/*.test.js"
   },

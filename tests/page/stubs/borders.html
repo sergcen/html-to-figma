@@ -1,0 +1,40 @@
+<html>
+    <style>
+        #container {
+            display: flex;
+        }
+        .borders {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+        }
+
+        .left {
+            border-left: none
+        }
+        .right {
+            border-right: none
+        }
+
+        .top {
+            border-top: none
+        }
+
+        .bottom {
+            border-bottom: none
+        }
+        
+    </style>
+    <body>
+        <div id="container">
+            <div class="borders"></div>
+            <div class="borders left"></div>
+            <div class="borders right"></div>
+            <div class="borders top"></div>
+            <div class="borders bottom"></div>
+        </div>
+    </body>
+</html>

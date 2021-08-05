@@ -1,5 +1,5 @@
 {
-    "name": "html-ro-figma-dev",
+    "name": "html-to-figma DEV-plugin",
     "id": "962455453431179906",
     "api": "1.0.0",
     "main": "dist/figma.js",

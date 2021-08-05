@@ -1,4 +1,4 @@
-import { LayerNode } from '../types';
+import { LayerNode, MetaLayerNode } from '../types';
 import { traverse } from '../utils';
 import { context } from './utils';
 
@@ -9,7 +9,7 @@ function setData(node: any, key: string, value: string) {
     (node as any).data[key] = value;
 }
 
-export const addConstraintToLayer = (layer: LayerNode) => {
+export const addConstraintToLayer = (layer: MetaLayerNode, elem?: HTMLElement) => {
     // @ts-expect-error
     const { getComputedStyle, HTMLElement } = context.window;
     
@@ -22,9 +22,7 @@ export const addConstraintToLayer = (layer: LayerNode) => {
         return;
     }
 
-    const ref = layer.ref;
-
-    if (!ref) {
+    if (!elem) {
         layer.constraints = {
             horizontal: 'SCALE',
             vertical: 'MIN',
@@ -33,14 +31,13 @@ export const addConstraintToLayer = (layer: LayerNode) => {
     }
 
     const el =
-        // @ts-expect-error
-        ref instanceof HTMLElement ? ref : ref.parentElement;
+        elem instanceof HTMLElement ? elem : elem.parentElement;
     const parent = el && el.parentElement;
     if (!el || !parent) return;
 
     const currentDisplay = el.style.display;
-    // TODO зачем?
-    // вероятно чтобы правильно посчитать фиксированную ширину и высоту
+    // TODO
+    // правильно посчитать фиксированную ширину и высоту
     el.style.setProperty('display', 'none', '!important');
     let computed = getComputedStyle(el);
     const hasFixedWidth =
@@ -149,10 +146,10 @@ export const addConstraintToLayer = (layer: LayerNode) => {
     };
 };
 
-export function addConstraints(layers: LayerNode[]) {
-    layers.forEach((layer) => {
-        traverse(layer, (child) => {
-            addConstraintToLayer(child);
-        });
-    });
-}
+// export function addConstraints(layers: LayerNode[]) {
+//     layers.forEach((layer) => {
+//         traverse(layer, (child) => {
+//             addConstraintToLayer(child);
+//         });
+//     });
+// }

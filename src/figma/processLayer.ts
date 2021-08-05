@@ -2,7 +2,7 @@ import { getImageFills } from "../utils";
 import { processImages } from "./images";
 import { getMatchingFont } from "./getFont";
 import { assign } from "./helpers";
-import { LayerNode } from "../types";
+import { LayerNode, PlainLayerNode, WithRef } from "../types";
 
 const processDefaultElement = (
     layer: LayerNode,
@@ -37,8 +37,8 @@ const createNodeFromLayer = (layer: LayerNode) => {
 const SIMPLE_TYPES = ['FRAME', 'GROUP', 'SVG', 'RECTANGLE'];
 
 export const processLayer = async (
-    layer: LayerNode,
-    parent: LayerNode | null,
+    layer: PlainLayerNode,
+    parent: WithRef<LayerNode> | null,
     baseFrame: PageNode | FrameNode
 ) => {
     const parentFrame = (parent?.ref as FrameNode) || baseFrame;
@@ -56,6 +56,7 @@ export const processLayer = async (
     if (SIMPLE_TYPES.includes(layer.type as string)) {
         parentFrame.appendChild(processDefaultElement(layer, node));
     }
+    // @ts-expect-error
     layer.ref = node;
 
     if (layer.type === 'RECTANGLE') {
@@ -77,33 +78,30 @@ export const processLayer = async (
         text.resize(layer.width || 1, layer.height || 1);
 
         text.textAutoResize = 'HEIGHT';
-
-        const lineHeight = layer.lineHeight ?
-            // @ts-expect-error
-            layer.lineHeight?.value : 
-            layer.height;
         
         let adjustments = 0;
-
-        // Adjust text size
+        if (layer.lineHeight) {
+            text.lineHeight = layer.lineHeight;
+        }
+        // Adjust text width
         while (
-            typeof text.fontSize === 'number' &&
-            typeof layer.fontSize === 'number' &&
-            (text.height > Math.max(layer.height as number, lineHeight) * 1.2 ||
-                text.width > (layer.width as number) * 1.2)
+            typeof layer.height === 'number' &&
+            text.height > layer.height
         ) {
-            // Don't allow changing more than ~30%
-            if (adjustments++ > layer.fontSize * 0.3) {
+
+            if (adjustments++ > 5) {
                 console.warn('Too many font adjustments', text, layer);
-                // debugger
+
                 break;
             }
+
             try {
-                text.fontSize = text.fontSize - 1;
+                text.resize(text.width + 1, text.height);
             } catch (err) {
                 console.warn('Error on resize text:', layer, text, err);
             }
         }
+
         parentFrame.appendChild(text);
     }
 

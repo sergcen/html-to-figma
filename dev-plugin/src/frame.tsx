@@ -15,7 +15,7 @@ const sendToFigma = (layers: LayerNode) => {
         },
         '*'
     );
-}
+};
 
 // @ts-ignore
 self.MonacoEnvironment = {
@@ -44,11 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
             value: `
 <html>
     <style>
-        .button { 
-            background: #fc0;
+        .button {
             padding: 10px;
-            border: 0;
-            border-radius: 4px;
         }
     </style>
     <body>
@@ -71,18 +68,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateFigma = throttle(async () => {
         setContext(frame.contentWindow as Window);
         //@ts-ignore
-        const res = await htmlToFigma('#container');
+        const res = await htmlToFigma('#root,#container');
 
-
-        // frame.contentWindow.htmlToFigma = htmlToFigma;
-        //@ts-ignore
-        // const res = await frame.contentWindow.eval(`(${htmlToFigma.toString()})()`);
-        console.log(res);
         sendToFigma(res);
     }, 500);
 
+    frame?.contentDocument?.addEventListener('DOMContentLoaded', async () => {
+        setTimeout(() => {
+            updateFigma();
+        }, 1000);
+    });
+
     const updateSandbox = async () => {
-        frame.srcdoc = editor.getValue();
+        // frame.srcdoc = editor.getValue();
         setTimeout(updateFigma, 500);
         // updateFigma();
     };

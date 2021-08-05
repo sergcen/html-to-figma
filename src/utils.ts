@@ -1,19 +1,55 @@
 import { LayerNode, Unit } from './types';
 
-export const hasChildren = (node: LayerNode): node is ChildrenMixin =>
-    node && Array.isArray((node as ChildrenMixin).children);
+export const hasChildren = <T>(node: T) =>
+    // @ts-expect-error
+    node && Array.isArray(node.children);
 
 export function traverse(
     layer: LayerNode,
     cb: (layer: LayerNode, parent: LayerNode | null) => void,
-    parent: LayerNode | null = null
+    parent: LayerNode | null = null,
 ) {
     if (layer) {
         cb(layer, parent);
-        if (hasChildren(layer)) {
+        if (hasChildren<LayerNode>(layer)) {
+            // @ts-expect-error
             layer.children.forEach((child) =>
                 traverse(child as LayerNode, cb, layer)
             );
+        }
+    }
+}
+
+export function traverseMap<T>(
+    layer: T,
+    cb: (layer: T, parent: T | null) => T | undefined,
+    parent: T | null = null,
+) {
+    if (layer) {
+        const newLayer = cb(layer, parent);
+        // @ts-expect-error
+        if (newLayer?.children?.length) {
+            // @ts-expect-error
+            newLayer.children = newLayer.children.map((child) =>
+                traverseMap(child, cb, layer)
+            );
+        }
+        return newLayer;
+    }
+}
+
+export async function traverseAsync<T>(
+    layer: T,
+    cb: (layer: T, parent: T | null) => void,
+    parent: T | null = null,
+) {
+    if (layer) {
+        await cb(layer, parent);
+        if (hasChildren(layer)) {
+            // @ts-ignore
+            for (let child of layer.children.reverse()) {
+                await traverseAsync(child as T, cb, layer)
+            }
         }
     }
 }
@@ -22,7 +58,16 @@ export function size(obj: object) {
     return Object.keys(obj).length;
 }
 
-export function getRgb(colorString?: string | null) {
+export const capitalize = (str: string) => str[0].toUpperCase() + str.substring(1);
+
+interface ParsedColor {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+}
+
+export function getRgb(colorString?: string | null): ParsedColor | null {
     if (!colorString) {
         return null;
     }
@@ -54,11 +99,26 @@ export const toNum = (v: string): number => {
     return !isNaN(n) ? n : 0;
 };
 
-export const parseUnits = (str?: string | null): null | Unit => {
+export const toPercent = (v: string): number => {
+    // if (!/px$/.test(v) && v !== '0') return v;
+    if (!/%$/.test(v) && v !== '0') return 0;
+    const n = parseInt(v);
+    // return !isNaN(n) ? n : v;
+    return !isNaN(n) ? n / 100 : 0;
+};
+
+export const parseUnits = (str?: string | null, relative?: number): null | Unit => {
     if (!str) {
         return null;
     }
-    const value = toNum(str);
+    let value = toNum(str);
+    if (relative && !value) {
+        const percent = toPercent(str);
+        
+        if (!percent) return null;
+
+        value = relative * percent;
+    }
     // const match = str.match(/([\d\.]+)px/);
     // const val = match && match[1];
     if (value) {
@@ -80,10 +140,30 @@ interface ParsedBoxShadow {
     offsetY: number;
     blurRadius: number;
     spreadRadius: number;
-    color: string;
+    color: ParsedColor;
 }
 
-export const parseValue = (str: string): ParsedBoxShadow => {
+const parseMultipleCSSValues = (str: string) => {
+    const parts = [];
+    let lastSplitIndex = 0;
+    let skobka = false;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === ',' && !skobka) {
+            parts.push(str.slice(lastSplitIndex, i));
+            lastSplitIndex = i + 1;
+        } else if(str[i] === '(') {
+            skobka = true;
+        } else if(str[i] === ')') {
+            skobka = false;
+        }
+    }
+    parts.push(str.slice(lastSplitIndex));
+
+    return parts.map(s => s.trim());
+}
+
+export const parseBoxShadowValue = (str: string): ParsedBoxShadow => {
     // TODO: this is broken for multiple box shadows
     if (str.startsWith('rgb')) {
         // Werid computed style thing that puts the color in the front not back
@@ -106,15 +186,32 @@ export const parseValue = (str: string): ParsedBoxShadow => {
 
     const [offsetX, offsetY, blurRadius, spreadRadius] = nums;
 
+    const parsedColor = getRgb(color);
+
+    if (!parsedColor) {
+        console.error('Parse color error: ' + color);
+    }
+
     return {
         inset,
         offsetX,
         offsetY,
         blurRadius,
         spreadRadius,
-        color,
+        color: parsedColor || { r: 0, g: 0, b: 0, a: 1},
     };
 };
+
+export const getOpacity = (styles: CSSStyleDeclaration) => {
+    return Number(styles.opacity);
+}
+
+export const parseBoxShadowValues = (str: string): ParsedBoxShadow[] => {
+    const values = parseMultipleCSSValues(str);
+
+    return values.map(s => parseBoxShadowValue(s));
+};
+
 
 export function getImageFills(layer: RectangleNode | TextNode) {
     const images =
@@ -122,3 +219,5 @@ export function getImageFills(layer: RectangleNode | TextNode) {
         layer.fills.filter((item) => item.type === 'IMAGE');
     return images;
 }
+
+export const defaultPlaceholderColor = getRgb('rgba(178, 178, 178, 1)');

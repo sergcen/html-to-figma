@@ -1,5 +1,5 @@
-import { getImageFills } from '../utils';
-import { LayerNode, SvgNode } from '../types';
+import { getImageFills, parseUnits } from '../utils';
+import { LayerNode, SvgNode, Unit } from '../types';
 import fileType from 'file-type';
 import { context } from './utils';
 
@@ -31,29 +31,58 @@ export function getAggregateRectOfElements(elements: Element[]) {
         height,
     };
 }
-export function getBoundingClientRect(el: Element): ClientRect {
+export function getBoundingClientRect(
+    el: Element,
+    pseudo?: string
+): ClientRect {
     const { getComputedStyle } = context.window;
 
-    const computed = getComputedStyle(el);
+    const computed = getComputedStyle(el, pseudo);
     const display = computed.display;
-    if (display && display.includes('inline') && el.children.length) {
-        const elRect = el.getBoundingClientRect();
-        const aggregateRect = getAggregateRectOfElements(
-            Array.from(el.children)
-        )!;
-
-        if (elRect.width > aggregateRect.width) {
-            return {
-                ...aggregateRect,
-                width: elRect.width,
-                left: elRect.left,
-                right: elRect.right,
-            };
-        }
-        return aggregateRect;
+    if (pseudo) {
+        return getBoundingClientRectPseudo(el, pseudo, computed);
     }
+    // if (display && display.includes('inline') && el.children.length) {
+    //     const elRect = el.getBoundingClientRect();
+    //     const aggregateRect = getAggregateRectOfElements(
+    //         Array.from(el.children)
+    //     )!;
+
+    //     if (elRect.width > aggregateRect.width) {
+    //         return {
+    //             ...aggregateRect,
+    //             width: elRect.width,
+    //             left: elRect.left,
+    //             right: elRect.right,
+    //         };
+    //     }
+    //     return aggregateRect;
+    // }
 
     return el.getBoundingClientRect();
+}
+
+export function getBoundingClientRectPseudo(
+    el: Element,
+    pseudo: string,
+    style: CSSStyleDeclaration
+): ClientRect {
+    const dest: Record<string, string> = {};
+    const copy = document.createElement('span');
+
+    for (let i = 0, l = style.length; i < l; i++) {
+        const prop = style[i];
+
+        // @ts-ignore
+        copy.style[prop] = style.getPropertyValue(prop) || style[prop];
+    }
+
+    pseudo === 'after' ? el.append(copy) : el.prepend(copy);
+
+    const rect = copy.getBoundingClientRect();
+    el.removeChild(copy);
+
+    return rect;
 }
 
 export function getDirectionMostOfElements(
@@ -213,7 +242,7 @@ export function isHidden(element: Element, pseudo?: string) {
     do {
         const computed = getComputedStyle(el, pseudo);
         if (
-            // computed.opacity === '0' ||
+            computed.opacity === '0' ||
             computed.display === 'none' ||
             computed.visibility === 'hidden'
         ) {
@@ -337,4 +366,70 @@ export const getShadowEls = (el: Element): Element[] =>
         return memo;
     }, [] as Element[]);
 
+export enum ElemTypes {
+    Textarea,
+    Input,
+    Image,
+    Picture,
+    Video,
+    SVG,
+    SubSVG,
+    Element
+}
 
+export const getElemType = (el: Element): ElemTypes | undefined => {
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLInputElement) {
+        return ElemTypes.Input;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLTextAreaElement) {
+        return ElemTypes.Textarea;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLPictureElement) {
+        return ElemTypes.Picture;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLImageElement) {
+        return ElemTypes.Image;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLVideoElement) {
+        return ElemTypes.Video;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.SVGSVGElement) {
+        return ElemTypes.SVG;
+    }
+    // @ts-expect-error
+    if (el instanceof context.window.SVGElement) {
+        return ElemTypes.SubSVG;
+    }
+
+    // @ts-expect-error
+    if (el instanceof context.window.HTMLElement) {
+        return ElemTypes.Element;
+    }
+};
+
+export const isElemType = (el: Element, type: ElemTypes): boolean => {
+    return getElemType(el) === type;
+}
+
+export const getLineHeight = (el: HTMLElement, computedStyles: CSSStyleDeclaration): Unit | null => {
+    const computedLineHeight = parseUnits(computedStyles.lineHeight);
+
+    if (computedLineHeight) {
+        return computedLineHeight;
+    }
+
+    if (isElemType(el, ElemTypes.Input)) {
+        return parseUnits(computedStyles.height);
+    }
+
+    const fontSize = parseUnits(computedStyles.fontSize)?.value;
+    if (!fontSize) return null;
+
+    return { value: Math.floor(fontSize * 1.2), unit: 'PIXELS' }
+}

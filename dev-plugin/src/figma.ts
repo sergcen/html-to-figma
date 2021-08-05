@@ -1,13 +1,18 @@
 import { addLayersToFrame, defaultFont } from '../../src/figma';
+import { PlainLayerNode } from '../../src/types';
 
 
 //@ts-ignore
 figma.showUI(__html__, {
-    width: 650,
+    width: 600,
     height: 600,
 });
 
-let figmaId: string = '';
+const name = 'HTML-TO-FIGMA RESULT';
+
+interface MsgData {
+    layers: PlainLayerNode[];
+}
 
 figma.ui.onmessage = async (msg) => {
     if (msg.type === 'import') {
@@ -15,34 +20,27 @@ figma.ui.onmessage = async (msg) => {
 
         const { data } = msg;
 
-        let { layers } = data;
-
-        const name = 'SANDBOX RESULT';
+        let { layers } = data as MsgData;
 
         let baseFrame: PageNode | FrameNode = figma.currentPage;
         let frameRoot: SceneNode = baseFrame as any;
 
         let x = 0, y = 0;
-        let currentNode;
-        if (figmaId) {
-            currentNode = figma.currentPage.findOne(n => n.id === figmaId);
-            if (!currentNode) return;
+        let currentNode = figma.currentPage.findOne(n => n.name === name);
 
-            if (currentNode) {
-                x = currentNode.x;
-                y = currentNode.y;
-            }
+        if (currentNode) {
+            x = currentNode.x;
+            y = currentNode.y;
         }
-
+        console.log(layers);
         for (const rootLayer of layers) {
             rootLayer.x = x;
             rootLayer.y = y;
         }
-
+        let n = 0;
         await addLayersToFrame(layers, baseFrame, ({ node, parent }) => {
             if (!parent) {
                 frameRoot = node;
-                figmaId = node.id;
                 node.name = name;
             }
         });

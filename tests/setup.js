@@ -11,7 +11,7 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 module.exports = async function () {
     await setupDevServer({
-        command: `parcel tests/page/index.html --port 3000`,
+        command: `npx serve dist -l 3000`,
         launchTimeout: 50000,
         port: 3000,
     });
