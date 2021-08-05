@@ -7,7 +7,10 @@ module.exports = (env, argv) => {
         __dirname,
         argv.mode === 'production' ? '../dev-plugin-static' : 'dist'
     );
-    const frameUrl = argv.mode === 'production' ? 'github' : 'http://localhost:5000/frame.html';
+    const frameUrl =
+        argv.mode === 'production'
+            ? 'https://sergcen.github.io/html-to-figma/dev-plugin-static/frame.html'
+            : 'http://localhost:5000/frame.html';
 
     return {
         mode: argv.mode === 'production' ? 'production' : 'development',
@@ -65,7 +68,7 @@ module.exports = (env, argv) => {
                 filename: 'index.html',
                 inlineSource: '.(js)$',
                 chunks: ['ui'],
-                templateParameters: { frameUrl }
+                templateParameters: { frameUrl },
             }),
             new HtmlWebpackPlugin({
                 template: './src/frame.html',
