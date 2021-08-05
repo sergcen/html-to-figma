@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const updateSandbox = async () => {
-        // frame.srcdoc = editor.getValue();
+        frame.srcdoc = editor.getValue();
         setTimeout(updateFigma, 500);
         // updateFigma();
     };
