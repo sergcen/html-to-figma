@@ -12,7 +12,7 @@ USAGE:
 
 Browser:
 ```js
-import { htmlTofigma } from "html-to-figma/browser";
+import { htmlTofigma } from "html-figma/browser";
 
 const element = document.getElementById('#element-to-export');
 
@@ -21,7 +21,7 @@ const layersMeta = await htmlTofigma(element);
 
 Figma:
 ```js
-import { addLayersToFrame } from "html-to-figma/figma";
+import { addLayersToFrame } from "html-figma/figma";
 
 const rootNode = figma.currentPage;
 
