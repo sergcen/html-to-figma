@@ -1,9 +1,11 @@
 {
   "name": "html-figma",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Covert DOM node to Figma Node",
   "main": "src/index.ts",
-  "files": ["/src"],
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "start": "parcel tests/page/index.html",
     "build": "parcel build tests/page/index.ts --no-minify && cp -R tests/page/stubs dist/",
