@@ -1,859 +1,709 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Convert to figma button with padding 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "characters": "TEST",
-                "children": Array [],
-                "constraints": Object {
-                  "horizontal": "CENTER",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [
-                  Object {
-                    "blendMode": "NORMAL",
-                    "color": Object {
-                      "b": 0,
-                      "g": 0,
-                      "r": 0,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                    "visible": true,
-                  },
-                ],
-                "fontFamily": "Arial",
-                "fontSize": 13,
-                "height": 15,
-                "lineHeight": Object {
-                  "unit": "PIXELS",
-                  "value": 15,
-                },
-                "textAlignHorizontal": "CENTER",
-                "type": "TEXT",
-                "width": 30,
-                "x": 14,
-                "y": 12,
-              },
-            ],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "shrink",
-            },
-            "fills": Array [
-              Object {
-                "color": Object {
-                  "b": 0.9372549019607843,
-                  "g": 0.9372549019607843,
-                  "r": 0.9372549019607843,
-                },
-                "opacity": 1,
-                "type": "SOLID",
-              },
-            ],
-            "height": 39,
-            "opacity": 1,
-            "strokeWeight": 2,
-            "strokes": Array [
-              Object {
-                "color": Object {
-                  "b": 0.4627450980392157,
-                  "g": 0.4627450980392157,
-                  "r": 0.4627450980392157,
-                },
-                "opacity": 1,
-                "type": "SOLID",
-              },
-            ],
-            "type": "FRAME",
-            "width": 58,
-            "x": 0,
-            "y": 0,
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "characters": "TEST",
+          "constraints": Object {
+            "horizontal": "CENTER",
+            "vertical": "MIN",
           },
-        ],
-        "clipsContent": false,
-        "constraints": Object {
-          "horizontal": "SCALE",
-          "vertical": "MIN",
+          "data": Object {
+            "heightType": "fixed",
+            "widthType": "shrink",
+          },
+          "fills": Array [
+            Object {
+              "blendMode": "NORMAL",
+              "color": Object {
+                "b": 0,
+                "g": 0,
+                "r": 0,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+              "visible": true,
+            },
+          ],
+          "fontFamily": "Arial",
+          "fontSize": 13,
+          "height": 15,
+          "lineHeight": Object {
+            "unit": "PIXELS",
+            "value": 15,
+          },
+          "textAlignHorizontal": "CENTER",
+          "type": "TEXT",
+          "width": 34,
+          "x": 12,
+          "y": 12,
         },
-        "data": Object {
-          "heightType": "fixed",
-          "widthType": "fixed",
-        },
-        "fills": Array [],
-        "height": 39,
-        "opacity": 1,
-        "type": "FRAME",
-        "width": 784,
-        "x": 8,
-        "y": 8,
+      ],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
       },
-    ],
-    "constraints": Object {
-      "horizontal": "SCALE",
-      "vertical": "MIN",
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "shrink",
+      },
+      "fills": Array [
+        Object {
+          "color": Object {
+            "b": 0.9372549019607843,
+            "g": 0.9372549019607843,
+            "r": 0.9372549019607843,
+          },
+          "opacity": 1,
+          "type": "SOLID",
+        },
+      ],
+      "height": 39,
+      "opacity": 1,
+      "strokeWeight": 2,
+      "strokes": Array [
+        Object {
+          "color": Object {
+            "b": 0.4627450980392157,
+            "g": 0.4627450980392157,
+            "r": 0.4627450980392157,
+          },
+          "opacity": 1,
+          "type": "SOLID",
+        },
+      ],
+      "type": "FRAME",
+      "width": 58,
+      "x": 0,
+      "y": 0,
     },
-    "data": Object {
-      "heightType": "fixed",
-      "widthType": "fixed",
-    },
-    "height": 600,
-    "type": "FRAME",
-    "width": 800,
-    "x": 0,
-    "y": 0,
+  ],
+  "clipsContent": false,
+  "constraints": Object {
+    "horizontal": "SCALE",
+    "vertical": "MIN",
   },
-]
+  "data": Object {
+    "heightType": "fixed",
+    "widthType": "fixed",
+  },
+  "fills": Array [],
+  "height": 39,
+  "opacity": 1,
+  "type": "FRAME",
+  "width": 784,
+  "x": 8,
+  "y": 8,
+}
 `;
 
 exports[`Convert to figma buttons with :before :after 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "characters": "TEST 1s",
-                "children": Array [],
-                "constraints": Object {
-                  "horizontal": "CENTER",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [
-                  Object {
-                    "blendMode": "NORMAL",
-                    "color": Object {
-                      "b": 0,
-                      "g": 0,
-                      "r": 0,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                    "visible": true,
-                  },
-                ],
-                "fontFamily": "Arial",
-                "fontSize": 13,
-                "height": 15,
-                "lineHeight": Object {
-                  "unit": "PIXELS",
-                  "value": 15,
-                },
-                "textAlignHorizontal": "CENTER",
-                "type": "TEXT",
-                "width": 52,
-                "x": 10,
-                "y": 10,
-              },
-              Object {
-                "borders": Array [],
-                "bottomLeftRadius": 4,
-                "bottomRightRadius": 4,
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0,
-                      "g": 0.8,
-                      "r": 1,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "height": 35,
-                "name": "::before",
-                "opacity": 1,
-                "topLeftRadius": 4,
-                "topRightRadius": 4,
-                "type": "FRAME",
-                "width": 72,
-                "x": 0,
-                "y": 0,
-              },
-              Object {
-                "borders": Array [],
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [],
-                "height": 35,
-                "name": "::after",
-                "opacity": 1,
-                "type": "FRAME",
-                "width": 72,
-                "x": 0,
-                "y": 0,
-              },
-            ],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "shrink",
-            },
-            "fills": Array [],
-            "height": 35,
-            "opacity": 1,
-            "type": "FRAME",
-            "width": 72,
-            "x": 0,
-            "y": 0,
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "characters": "TEST 1s",
+          "constraints": Object {
+            "horizontal": "CENTER",
+            "vertical": "MIN",
           },
-          Object {
-            "children": Array [
-              Object {
-                "characters": "TEST 2s",
-                "children": Array [],
-                "constraints": Object {
-                  "horizontal": "CENTER",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [
-                  Object {
-                    "blendMode": "NORMAL",
-                    "color": Object {
-                      "b": 0,
-                      "g": 0,
-                      "r": 0,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                    "visible": true,
-                  },
-                ],
-                "fontFamily": "Arial",
-                "fontSize": 13,
-                "height": 15,
-                "lineHeight": Object {
-                  "unit": "PIXELS",
-                  "value": 15,
-                },
-                "textAlignHorizontal": "CENTER",
-                "type": "TEXT",
-                "width": 52,
-                "x": 10,
-                "y": 10,
-              },
-              Object {
-                "borders": Array [],
-                "bottomLeftRadius": 4,
-                "bottomRightRadius": 4,
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0,
-                      "g": 0.8,
-                      "r": 1,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "height": 35,
-                "name": "::before",
-                "opacity": 1,
-                "topLeftRadius": 4,
-                "topRightRadius": 4,
-                "type": "FRAME",
-                "width": 72,
-                "x": 0,
-                "y": 0,
-              },
-              Object {
-                "borders": Array [],
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [],
-                "height": 35,
-                "name": "::after",
-                "opacity": 1,
-                "type": "FRAME",
-                "width": 72,
-                "x": 0,
-                "y": 0,
-              },
-            ],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "shrink",
-            },
-            "fills": Array [],
-            "height": 35,
-            "opacity": 1,
-            "type": "FRAME",
-            "width": 72,
-            "x": 76,
-            "y": 0,
+          "data": Object {
+            "heightType": "fixed",
+            "widthType": "shrink",
           },
-        ],
-        "clipsContent": false,
-        "constraints": Object {
-          "horizontal": "SCALE",
-          "vertical": "MIN",
+          "fills": Array [
+            Object {
+              "blendMode": "NORMAL",
+              "color": Object {
+                "b": 0,
+                "g": 0,
+                "r": 0,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+              "visible": true,
+            },
+          ],
+          "fontFamily": "Arial",
+          "fontSize": 13,
+          "height": 15,
+          "lineHeight": Object {
+            "unit": "PIXELS",
+            "value": 15,
+          },
+          "textAlignHorizontal": "CENTER",
+          "type": "TEXT",
+          "width": 52,
+          "x": 10,
+          "y": 10,
         },
-        "data": Object {
-          "heightType": "fixed",
-          "widthType": "fixed",
+        Object {
+          "bottomLeftRadius": 4,
+          "bottomRightRadius": 4,
+          "children": Array [],
+          "clipsContent": false,
+          "fills": Array [
+            Object {
+              "color": Object {
+                "b": 0,
+                "g": 0.8,
+                "r": 1,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "height": 35,
+          "name": "::before",
+          "opacity": 1,
+          "topLeftRadius": 4,
+          "topRightRadius": 4,
+          "type": "FRAME",
+          "width": 72,
+          "x": 0,
+          "y": 0,
         },
-        "fills": Array [],
-        "height": 35,
-        "opacity": 1,
-        "type": "FRAME",
-        "width": 784,
-        "x": 8,
-        "y": 8,
+        Object {
+          "children": Array [],
+          "clipsContent": false,
+          "fills": Array [],
+          "height": 35,
+          "name": "::after",
+          "opacity": 1,
+          "type": "FRAME",
+          "width": 72,
+          "x": 0,
+          "y": 0,
+        },
+      ],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
       },
-    ],
-    "constraints": Object {
-      "horizontal": "SCALE",
-      "vertical": "MIN",
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "shrink",
+      },
+      "fills": Array [],
+      "height": 35,
+      "opacity": 1,
+      "type": "FRAME",
+      "width": 72,
+      "x": 0,
+      "y": 0,
     },
-    "data": Object {
-      "heightType": "fixed",
-      "widthType": "fixed",
+    Object {
+      "children": Array [
+        Object {
+          "characters": "TEST 2s",
+          "constraints": Object {
+            "horizontal": "CENTER",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "widthType": "shrink",
+          },
+          "fills": Array [
+            Object {
+              "blendMode": "NORMAL",
+              "color": Object {
+                "b": 0,
+                "g": 0,
+                "r": 0,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+              "visible": true,
+            },
+          ],
+          "fontFamily": "Arial",
+          "fontSize": 13,
+          "height": 15,
+          "lineHeight": Object {
+            "unit": "PIXELS",
+            "value": 15,
+          },
+          "textAlignHorizontal": "CENTER",
+          "type": "TEXT",
+          "width": 52,
+          "x": 10,
+          "y": 10,
+        },
+        Object {
+          "bottomLeftRadius": 4,
+          "bottomRightRadius": 4,
+          "children": Array [],
+          "clipsContent": false,
+          "fills": Array [
+            Object {
+              "color": Object {
+                "b": 0,
+                "g": 0.8,
+                "r": 1,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "height": 35,
+          "name": "::before",
+          "opacity": 1,
+          "topLeftRadius": 4,
+          "topRightRadius": 4,
+          "type": "FRAME",
+          "width": 72,
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "children": Array [],
+          "clipsContent": false,
+          "fills": Array [],
+          "height": 35,
+          "name": "::after",
+          "opacity": 1,
+          "type": "FRAME",
+          "width": 72,
+          "x": 0,
+          "y": 0,
+        },
+      ],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
+      },
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "shrink",
+      },
+      "fills": Array [],
+      "height": 35,
+      "opacity": 1,
+      "type": "FRAME",
+      "width": 72,
+      "x": 76,
+      "y": 0,
     },
-    "height": 600,
-    "type": "FRAME",
-    "width": 800,
-    "x": 0,
-    "y": 0,
+  ],
+  "clipsContent": false,
+  "constraints": Object {
+    "horizontal": "SCALE",
+    "vertical": "MIN",
   },
-]
+  "data": Object {
+    "heightType": "fixed",
+    "widthType": "fixed",
+  },
+  "fills": Array [],
+  "height": 35,
+  "opacity": 1,
+  "type": "FRAME",
+  "width": 784,
+  "x": 8,
+  "y": 8,
+}
 `;
 
 exports[`Convert to figma input and placeholder 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
-                    "characters": "Placeholder",
-                    "constraints": Object {
-                      "horizontal": "SCALE",
-                      "vertical": "MIN",
-                    },
-                    "data": Object {
-                      "heightType": "fixed",
-                      "widthType": "shrink",
-                    },
-                    "fills": Array [
-                      Object {
-                        "blendMode": "NORMAL",
-                        "color": Object {
-                          "b": 0.6980392156862745,
-                          "g": 0.6980392156862745,
-                          "r": 0.6980392156862745,
-                        },
-                        "opacity": 1,
-                        "type": "SOLID",
-                        "visible": true,
-                      },
-                    ],
-                    "fontFamily": "Arial",
-                    "fontSize": 16,
-                    "height": 36,
-                    "lineHeight": Object {
-                      "unit": "PIXELS",
-                      "value": 36,
-                    },
-                    "type": "TEXT",
-                    "width": 772,
-                    "x": 6,
-                    "y": 0,
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "characters": "Placeholder",
+              "fills": Array [
+                Object {
+                  "blendMode": "NORMAL",
+                  "color": Object {
+                    "b": 0.6980392156862745,
+                    "g": 0.6980392156862745,
+                    "r": 0.6980392156862745,
                   },
-                ],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
+                  "opacity": 1,
+                  "type": "SOLID",
+                  "visible": true,
                 },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [],
-                "height": 36,
-                "opacity": 1,
-                "type": "FRAME",
-                "width": 784,
-                "x": 0,
-                "y": 0,
+              ],
+              "fontFamily": "Arial",
+              "fontSize": 16,
+              "height": 36,
+              "lineHeight": Object {
+                "unit": "PIXELS",
+                "value": 36,
               },
-              Object {
-                "bottomLeftRadius": 3,
-                "bottomRightRadius": 3,
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "position": "absolute",
-                  "widthType": "fixed",
-                },
-                "fills": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0.9333333333333333,
-                      "g": 0.9333333333333333,
-                      "r": 0.9333333333333333,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "height": 36,
-                "opacity": 1,
-                "strokeWeight": 1,
-                "strokes": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0.8,
-                      "g": 0.8,
-                      "r": 0.8,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "topLeftRadius": 3,
-                "topRightRadius": 3,
-                "type": "FRAME",
-                "width": 784,
-                "x": 0,
-                "y": 0,
-              },
-            ],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
+              "type": "TEXT",
+              "width": 778,
+              "x": 6,
+              "y": 0,
             },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "fixed",
-            },
-            "fills": Array [],
-            "height": 36,
-            "opacity": 1,
-            "type": "FRAME",
-            "width": 784,
-            "x": 0,
-            "y": 0,
+          ],
+          "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
-                    "characters": "Test Value",
-                    "constraints": Object {
-                      "horizontal": "SCALE",
-                      "vertical": "MIN",
-                    },
-                    "data": Object {
-                      "heightType": "fixed",
-                      "widthType": "shrink",
-                    },
-                    "fills": Array [
-                      Object {
-                        "blendMode": "NORMAL",
-                        "color": Object {
-                          "b": 0,
-                          "g": 0,
-                          "r": 0,
-                        },
-                        "opacity": 1,
-                        "type": "SOLID",
-                        "visible": true,
-                      },
-                    ],
-                    "fontFamily": "Arial",
-                    "fontSize": 16,
-                    "height": 36,
-                    "lineHeight": Object {
-                      "unit": "PIXELS",
-                      "value": 36,
-                    },
-                    "type": "TEXT",
-                    "width": 772,
-                    "x": 6,
-                    "y": 0,
-                  },
-                ],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "widthType": "shrink",
-                },
-                "fills": Array [],
-                "height": 36,
-                "opacity": 1,
-                "type": "FRAME",
-                "width": 784,
-                "x": 0,
-                "y": 0,
-              },
-              Object {
-                "bottomLeftRadius": 3,
-                "bottomRightRadius": 3,
-                "children": Array [],
-                "clipsContent": false,
-                "constraints": Object {
-                  "horizontal": "SCALE",
-                  "vertical": "MIN",
-                },
-                "data": Object {
-                  "heightType": "fixed",
-                  "position": "absolute",
-                  "widthType": "fixed",
-                },
-                "fills": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0.9333333333333333,
-                      "g": 0.9333333333333333,
-                      "r": 0.9333333333333333,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "height": 36,
-                "opacity": 1,
-                "strokeWeight": 1,
-                "strokes": Array [
-                  Object {
-                    "color": Object {
-                      "b": 0.8,
-                      "g": 0.8,
-                      "r": 0.8,
-                    },
-                    "opacity": 1,
-                    "type": "SOLID",
-                  },
-                ],
-                "topLeftRadius": 3,
-                "topRightRadius": 3,
-                "type": "FRAME",
-                "width": 784,
-                "x": 0,
-                "y": 0,
-              },
-            ],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "fixed",
-            },
-            "fills": Array [],
-            "height": 36,
-            "opacity": 1,
-            "type": "FRAME",
-            "width": 784,
-            "x": 0,
-            "y": 46,
+          "data": Object {
+            "heightType": "fixed",
+            "widthType": "shrink",
           },
-        ],
-        "clipsContent": false,
-        "constraints": Object {
-          "horizontal": "SCALE",
-          "vertical": "MIN",
+          "fills": Array [],
+          "height": 36,
+          "opacity": 1,
+          "type": "FRAME",
+          "width": 784,
+          "x": 0,
+          "y": 0,
         },
-        "data": Object {
-          "heightType": "fixed",
-          "widthType": "fixed",
+        Object {
+          "bottomLeftRadius": 3,
+          "bottomRightRadius": 3,
+          "children": Array [],
+          "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
+          "fills": Array [
+            Object {
+              "color": Object {
+                "b": 0.9333333333333333,
+                "g": 0.9333333333333333,
+                "r": 0.9333333333333333,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "height": 36,
+          "opacity": 1,
+          "strokeWeight": 1,
+          "strokes": Array [
+            Object {
+              "color": Object {
+                "b": 0.8,
+                "g": 0.8,
+                "r": 0.8,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "topLeftRadius": 3,
+          "topRightRadius": 3,
+          "type": "FRAME",
+          "width": 784,
+          "x": 0,
+          "y": 0,
         },
-        "fills": Array [],
-        "height": 82,
-        "opacity": 1,
-        "type": "FRAME",
-        "width": 784,
-        "x": 8,
-        "y": 8,
+      ],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
       },
-    ],
-    "constraints": Object {
-      "horizontal": "SCALE",
-      "vertical": "MIN",
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "fixed",
+      },
+      "fills": Array [],
+      "height": 36,
+      "opacity": 1,
+      "type": "FRAME",
+      "width": 784,
+      "x": 0,
+      "y": 0,
     },
-    "data": Object {
-      "heightType": "fixed",
-      "widthType": "fixed",
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "characters": "Test Value",
+              "fills": Array [
+                Object {
+                  "blendMode": "NORMAL",
+                  "color": Object {
+                    "b": 0,
+                    "g": 0,
+                    "r": 0,
+                  },
+                  "opacity": 1,
+                  "type": "SOLID",
+                  "visible": true,
+                },
+              ],
+              "fontFamily": "Arial",
+              "fontSize": 16,
+              "height": 36,
+              "lineHeight": Object {
+                "unit": "PIXELS",
+                "value": 36,
+              },
+              "type": "TEXT",
+              "width": 778,
+              "x": 6,
+              "y": 0,
+            },
+          ],
+          "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "widthType": "shrink",
+          },
+          "fills": Array [],
+          "height": 36,
+          "opacity": 1,
+          "type": "FRAME",
+          "width": 784,
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "bottomLeftRadius": 3,
+          "bottomRightRadius": 3,
+          "children": Array [],
+          "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
+          "fills": Array [
+            Object {
+              "color": Object {
+                "b": 0.9333333333333333,
+                "g": 0.9333333333333333,
+                "r": 0.9333333333333333,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "height": 36,
+          "opacity": 1,
+          "strokeWeight": 1,
+          "strokes": Array [
+            Object {
+              "color": Object {
+                "b": 0.8,
+                "g": 0.8,
+                "r": 0.8,
+              },
+              "opacity": 1,
+              "type": "SOLID",
+            },
+          ],
+          "topLeftRadius": 3,
+          "topRightRadius": 3,
+          "type": "FRAME",
+          "width": 784,
+          "x": 0,
+          "y": 0,
+        },
+      ],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
+      },
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "fixed",
+      },
+      "fills": Array [],
+      "height": 36,
+      "opacity": 1,
+      "type": "FRAME",
+      "width": 784,
+      "x": 0,
+      "y": 46,
     },
-    "height": 600,
-    "type": "FRAME",
-    "width": 800,
-    "x": 0,
-    "y": 0,
+  ],
+  "clipsContent": false,
+  "constraints": Object {
+    "horizontal": "SCALE",
+    "vertical": "MIN",
   },
-]
+  "data": Object {
+    "heightType": "fixed",
+    "widthType": "fixed",
+  },
+  "fills": Array [],
+  "height": 82,
+  "opacity": 1,
+  "type": "FRAME",
+  "width": 784,
+  "x": 8,
+  "y": 8,
+}
 `;
 
 exports[`Convert to figma opacity 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "clipsContent": false,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "fixed",
-            },
-            "fills": Array [
-              Object {
-                "color": Object {
-                  "b": 0.8,
-                  "g": 0.8,
-                  "r": 0.8,
-                },
-                "opacity": 1,
-                "type": "SOLID",
-              },
-            ],
-            "height": 100,
-            "opacity": 0.5,
-            "type": "FRAME",
-            "width": 100,
-            "x": 50,
-            "y": 0,
-          },
-        ],
-        "clipsContent": false,
-        "constraints": Object {
-          "horizontal": "SCALE",
-          "vertical": "MIN",
-        },
-        "data": Object {
-          "heightType": "fixed",
-          "widthType": "fixed",
-        },
-        "fills": Array [],
-        "height": 100,
-        "opacity": 1,
-        "type": "FRAME",
-        "width": 784,
-        "x": 8,
-        "y": 50,
+Object {
+  "children": Array [
+    Object {
+      "children": Array [],
+      "clipsContent": false,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
       },
-    ],
-    "constraints": Object {
-      "horizontal": "SCALE",
-      "vertical": "MIN",
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "fixed",
+      },
+      "fills": Array [
+        Object {
+          "color": Object {
+            "b": 0.8,
+            "g": 0.8,
+            "r": 0.8,
+          },
+          "opacity": 1,
+          "type": "SOLID",
+        },
+      ],
+      "height": 100,
+      "opacity": 0.5,
+      "type": "FRAME",
+      "width": 100,
+      "x": 50,
+      "y": 0,
     },
-    "data": Object {
-      "heightType": "fixed",
-      "widthType": "fixed",
-    },
-    "height": 600,
-    "type": "FRAME",
-    "width": 800,
-    "x": 0,
-    "y": 0,
+  ],
+  "clipsContent": false,
+  "constraints": Object {
+    "horizontal": "SCALE",
+    "vertical": "MIN",
   },
-]
+  "data": Object {
+    "heightType": "fixed",
+    "widthType": "fixed",
+  },
+  "fills": Array [],
+  "height": 100,
+  "opacity": 1,
+  "type": "FRAME",
+  "width": 784,
+  "x": 8,
+  "y": 50,
+}
 `;
 
 exports[`Convert to figma shadows 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "clipsContent": true,
-            "constraints": Object {
-              "horizontal": "SCALE",
-              "vertical": "MIN",
-            },
-            "data": Object {
-              "heightType": "fixed",
-              "widthType": "fixed",
-            },
-            "effects": Array [
-              Object {
-                "blendMode": "NORMAL",
-                "color": Object {
-                  "a": 0.05,
-                  "b": 0,
-                  "g": 0,
-                  "r": 0,
-                },
-                "offset": Object {
-                  "x": 0,
-                  "y": 0,
-                },
-                "radius": 0,
-                "spread": 1,
-                "type": "DROP_SHADOW",
-                "visible": true,
-              },
-              Object {
-                "blendMode": "NORMAL",
-                "color": Object {
-                  "a": 0.05,
-                  "b": 0,
-                  "g": 0,
-                  "r": 0,
-                },
-                "offset": Object {
-                  "x": 0,
-                  "y": 1,
-                },
-                "radius": 0,
-                "spread": 1,
-                "type": "DROP_SHADOW",
-                "visible": true,
-              },
-              Object {
-                "blendMode": "NORMAL",
-                "color": Object {
-                  "a": 0.05,
-                  "b": 0,
-                  "g": 0,
-                  "r": 0,
-                },
-                "offset": Object {
-                  "x": 0,
-                  "y": 4,
-                },
-                "radius": 6,
-                "spread": 0,
-                "type": "DROP_SHADOW",
-                "visible": true,
-              },
-            ],
-            "fills": Array [],
-            "height": 100,
-            "opacity": 1,
-            "type": "FRAME",
-            "width": 100,
-            "x": 50,
+Object {
+  "children": Array [
+    Object {
+      "children": Array [],
+      "clipsContent": true,
+      "constraints": Object {
+        "horizontal": "SCALE",
+        "vertical": "MIN",
+      },
+      "data": Object {
+        "heightType": "fixed",
+        "widthType": "fixed",
+      },
+      "effects": Array [
+        Object {
+          "blendMode": "NORMAL",
+          "color": Object {
+            "a": 0.05,
+            "b": 0,
+            "g": 0,
+            "r": 0,
+          },
+          "offset": Object {
+            "x": 0,
             "y": 0,
           },
-        ],
-        "clipsContent": false,
-        "constraints": Object {
-          "horizontal": "SCALE",
-          "vertical": "MIN",
+          "radius": 0,
+          "spread": 1,
+          "type": "DROP_SHADOW",
+          "visible": true,
         },
-        "data": Object {
-          "heightType": "fixed",
-          "widthType": "fixed",
+        Object {
+          "blendMode": "NORMAL",
+          "color": Object {
+            "a": 0.05,
+            "b": 0,
+            "g": 0,
+            "r": 0,
+          },
+          "offset": Object {
+            "x": 0,
+            "y": 1,
+          },
+          "radius": 0,
+          "spread": 1,
+          "type": "DROP_SHADOW",
+          "visible": true,
         },
-        "fills": Array [],
-        "height": 100,
-        "opacity": 1,
-        "type": "FRAME",
-        "width": 784,
-        "x": 8,
-        "y": 50,
-      },
-    ],
-    "constraints": Object {
-      "horizontal": "SCALE",
-      "vertical": "MIN",
+        Object {
+          "blendMode": "NORMAL",
+          "color": Object {
+            "a": 0.05,
+            "b": 0,
+            "g": 0,
+            "r": 0,
+          },
+          "offset": Object {
+            "x": 0,
+            "y": 4,
+          },
+          "radius": 6,
+          "spread": 0,
+          "type": "DROP_SHADOW",
+          "visible": true,
+        },
+      ],
+      "fills": Array [],
+      "height": 100,
+      "opacity": 1,
+      "type": "FRAME",
+      "width": 100,
+      "x": 50,
+      "y": 0,
     },
-    "data": Object {
-      "heightType": "fixed",
-      "widthType": "fixed",
-    },
-    "height": 600,
-    "type": "FRAME",
-    "width": 800,
-    "x": 0,
-    "y": 0,
+  ],
+  "clipsContent": false,
+  "constraints": Object {
+    "horizontal": "SCALE",
+    "vertical": "MIN",
   },
-]
+  "data": Object {
+    "heightType": "fixed",
+    "widthType": "fixed",
+  },
+  "fills": Array [],
+  "height": 100,
+  "opacity": 1,
+  "type": "FRAME",
+  "width": 784,
+  "x": 8,
+  "y": 50,
+}
 `;
