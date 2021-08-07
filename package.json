@@ -1,6 +1,6 @@
 {
   "name": "html-figma",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Covert DOM node to Figma Node",
   "main": "src/index.ts",
   "files": [
