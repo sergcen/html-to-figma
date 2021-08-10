@@ -2,6 +2,9 @@
     "compilerOptions": {
         "target": "es6",
         "lib": ["dom", "dom.iterable", "esnext", "es2016"],
+        "outDir": "./build",
+        "rootDirs": ["./src/browser", "./src/figma"],
+        "declaration": true,
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -15,6 +18,8 @@
         "isolatedModules": true,
         "noEmit": false,
         "experimentalDecorators": true,
+        "jsx": "react-jsx",
         "typeRoots": ["node_modules/@types", "node_modules/@figma"]
-    }
+    },
+    "include": ["src"]
 }

@@ -129,7 +129,7 @@ export function getAppliedComputedStyles(
 
     const styles = getComputedStyle(element, pseudo);
 
-    const list: (keyof React.CSSProperties)[] = [
+    const list = [
         'opacity',
         'backgroundColor',
         'border',

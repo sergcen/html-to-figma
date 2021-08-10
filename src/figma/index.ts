@@ -27,3 +27,4 @@ export async function addLayersToFrame(
 }
 
 export * from './getFont';
+export * from './dropOffset';
