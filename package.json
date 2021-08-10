@@ -1,6 +1,6 @@
 {
   "name": "html-figma",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Covert DOM node to Figma Node",
   "scripts": {
     "start": "parcel tests/page/index.html",
