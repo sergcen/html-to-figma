@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "parcel tests/page/index.html",
+    "start": "webpack serve",
     "build": "webpack build",
     "build:prod": "webpack build --mode=production",
     "serve:tests": "serve -s tests/page -p 3000",

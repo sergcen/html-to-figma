@@ -6,6 +6,9 @@ Convert DOM node to Figma node.
 
 Inspired https://github.com/BuilderIO/figma-html
 
+DEMO: https://www.figma.com/community/plugin/1005496056687344906/html-to-figma-DEV-plugin
+example: `/dev-plugin`
+
 ```npm i html-figma```
 
 USAGE:

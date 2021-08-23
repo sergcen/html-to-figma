@@ -102,5 +102,7 @@ export const getBorderPin = (
         width: Math.round(rect.width),
         height: Math.round(rect.height),
         children: layers,
+        // @ts-expect-error
+        fills: []
     }] as MetaLayerNode[];
 };

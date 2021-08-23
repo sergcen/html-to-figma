@@ -1,11 +1,15 @@
 {
   "name": "html-figma",
   "version": "0.2.0",
-  "description": "Covert DOM node to Figma Node",
+  "description": "Convert DOM node to Figma Node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergcen/html-to-figma"
+  },
   "scripts": {
     "start": "parcel tests/page/index.html",
     "publish:package": "npm run build:package && cd build && npm publish",
-    "build:package": "tsc --project tsconfig.json && cp package.json ./build",
+    "build:package": "tsc --project tsconfig.json && cp README.md ./build && cp package.json ./build",
     "build:tests": "parcel build tests/page/index.ts --no-minify && cp -R tests/page/stubs dist/",
     "serve:tests": "serve -s tests/page -p 3000",
     "test": "npm run build:tests && jest tests/*.test.js"
