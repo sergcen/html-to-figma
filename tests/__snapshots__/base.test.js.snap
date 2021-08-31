@@ -147,6 +147,15 @@ Object {
           "bottomRightRadius": 4,
           "children": Array [],
           "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
           "fills": Array [
             Object {
               "color": Object {
@@ -171,6 +180,15 @@ Object {
         Object {
           "children": Array [],
           "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
           "fills": Array [],
           "height": 35,
           "name": "::after",
@@ -241,6 +259,15 @@ Object {
           "bottomRightRadius": 4,
           "children": Array [],
           "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
           "fills": Array [
             Object {
               "color": Object {
@@ -265,6 +292,15 @@ Object {
         Object {
           "children": Array [],
           "clipsContent": false,
+          "constraints": Object {
+            "horizontal": "SCALE",
+            "vertical": "MIN",
+          },
+          "data": Object {
+            "heightType": "fixed",
+            "position": "absolute",
+            "widthType": "fixed",
+          },
           "fills": Array [],
           "height": 35,
           "name": "::after",
