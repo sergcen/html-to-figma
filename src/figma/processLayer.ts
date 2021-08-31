@@ -32,9 +32,13 @@ const createNodeFromLayer = (layer: LayerNode) => {
     if (layer.type === 'TEXT') {
         return figma.createText();
     }
+
+    if (layer.type === 'COMPONENT') {
+        return figma.createComponent();
+    }
 };
 
-const SIMPLE_TYPES = ['FRAME', 'GROUP', 'SVG', 'RECTANGLE'];
+const SIMPLE_TYPES = ['FRAME', 'GROUP', 'SVG', 'RECTANGLE', 'COMPONENT'];
 
 export const processLayer = async (
     layer: PlainLayerNode,

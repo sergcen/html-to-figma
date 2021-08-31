@@ -9,7 +9,7 @@ function setData(node: any, key: string, value: string) {
     (node as any).data[key] = value;
 }
 
-export const addConstraintToLayer = (layer: MetaLayerNode, elem?: HTMLElement) => {
+export const addConstraintToLayer = (layer: MetaLayerNode, elem?: HTMLElement, pseudo?: string) => {
     // @ts-expect-error
     const { getComputedStyle, HTMLElement } = context.window;
     
@@ -39,7 +39,7 @@ export const addConstraintToLayer = (layer: MetaLayerNode, elem?: HTMLElement) =
     // TODO
     // правильно посчитать фиксированную ширину и высоту
     el.style.setProperty('display', 'none', '!important');
-    let computed = getComputedStyle(el);
+    let computed = getComputedStyle(el, pseudo);
     const hasFixedWidth =
         computed.width && computed.width.trim().endsWith('px');
     const hasFixedHeight =
@@ -52,7 +52,7 @@ export const addConstraintToLayer = (layer: MetaLayerNode, elem?: HTMLElement) =
     let hasAutoMarginTop = computed.marginTop === 'auto';
     let hasAutoMarginBottom = computed.marginBottom === 'auto';
 
-    computed = getComputedStyle(el);
+    computed = getComputedStyle(el, pseudo);
 
     if (['absolute', 'fixed'].includes(computed.position!)) {
         setData(layer, 'position', computed.position!);

@@ -32,7 +32,7 @@ export type WithRef<T> = T & {
 //     zIndex: Number(computedStyle.zIndex),
 // }
 
-export type LayerNode = Partial<RectangleNode | TextNode | FrameNode | SvgNode | GroupNode>;
+export type LayerNode = Partial<RectangleNode | TextNode | FrameNode | SvgNode | GroupNode | ComponentNode>;
 
 export type PlainLayerNode = Partial<LayerNode> & {
     fontFamily?: string

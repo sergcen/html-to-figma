@@ -11,6 +11,7 @@ import { MetaLayerNode, SvgNode, WithMeta } from '../types';
 import { context, replaceSvgFill } from './utils';
 import { textToFigma } from './text-to-figma';
 import { getBorder, getBorderPin } from './border';
+import { addConstraintToLayer } from './add-constraints';
 
 export const elementToFigma = (
     el: Element,
@@ -237,7 +238,9 @@ export const elementToFigma = (
 
     if (!pseudo && getComputedStyle(el, 'before').content !== 'none') {
         result.before = elementToFigma(el, 'before') as WithMeta<FrameNode>;
+
         if (result.before) {
+            addConstraintToLayer(result.before, el as HTMLElement, 'before');
             result.before.name = '::before';
         }
     }
@@ -245,6 +248,7 @@ export const elementToFigma = (
     if (!pseudo && getComputedStyle(el, 'after').content !== 'none') {
         result.after = elementToFigma(el, 'after') as WithMeta<FrameNode>;
         if (result.after) {
+            addConstraintToLayer(result.after, el as HTMLElement, 'after');
             result.after.name = '::after';
         }
     }
